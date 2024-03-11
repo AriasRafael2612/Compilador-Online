@@ -1,16 +1,15 @@
-# Introduccion
 
 Para empezar a programar con este nuevo lenguaje, el codigo debe comenzar con la palabra "inicializacion" seguida de llaves que encierran el contenido del programa como se muestra aqui:
 
-```
+```javascript
 inicializacion {
 
 }
 ```
 
-Dentro de las llaves podremos comenzar a definir las siguientes variables "ent", "dec" "ltr", en la cual podremos comenzar a declararlas, asignarles un valor o imprimirlas.
+Dentro de estas llaves, se pueden definir y manipular variables de tres tipos: "ent" (entero), "dec" (decimal) y "ltr" (letra). Las variables pueden ser declaradas, asignadas con un valor inicial o incluso impresas en la consola.
 
-Las instrucciones deben estar separadas por un punto y coma que se coloca al final de cada instrucción.
+Las instrucciones dentro del bloque de código deben estar separadas por un punto y coma al final de cada una.
 
 ```javascript
 inicializacion {
@@ -20,21 +19,35 @@ inicializacion {
 }
 ```
 
-Para asignarles un valor a la variables, la sintaxis es la siguiente: variable id = valor. Como se muestra aqui,:
+Para asignar valores a las variables, se utiliza la sintaxis: variable id = valor. Por ejemplo:
 
 ```javascript
 inicializacion {
     ent x = 45;
-    ltr l = p;
     dec y = 12.5;
 }
 ```
 
-Las variables solo pueden aceptar ciertos terminos:
+Además de la asignación de variables, también se pueden realizar operaciones aritméticas y lógicas entre variables o valores. Por ejemplo:
 
-* 'ent' solo acepta numeros enteros por ejemplo: 1, 45, 12.
-* 'ltr' solo acepta letras por ejemplo: a, b, k.
-* 'dec' acepta tanto numeros enteros como numeros decimales, por ejemplo: 5, 1.12, 9, 655.99. 
+```javascript
+inicializacion {
+    ent x = 10;
+    ent y = 20;
+    ent resultado = x + y * 2;
+}
+```
+
+En este caso, se declara una variable resultado que se inicializa con el resultado de la expresión x + y * 2, que sería igual a 60.
+
+El lenguaje también permite la impresión de valores en la consola utilizando la función printf. Por ejemplo:
+
+```javascript
+inicializacion {
+    ent x = 10;
+    printf(x);
+}
+```
 
 
 

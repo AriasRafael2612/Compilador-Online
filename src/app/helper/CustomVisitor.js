@@ -30,95 +30,86 @@ export default class CustomVisitor extends CompiladorVisitor {
 
     // Visita un árbol de análisis producido por CompiladorParser#start
     visitStart(ctx) {
-        // Verificar si la palabra clave "inicializacion" está escrita correctamente
-        if (!ctx.INICIALIZACION()) {
-            this.reportError('Error: Debes comenzar con la palabra "inicializacion"');
-        }
-
-        // Verificar si hay una llave de apertura después de la palabra clave "inicializacion"
-        if (!ctx.LLAVE_I()) {
-            this.reportError('Error: Después de "inicializacion" debe haber una llave de apertura "{"');
-        }
-
-        // Verificar si hay una llave de cierre después del contenido
-        if (!ctx.LLAVE_F()) {
-            console.log(ctx.LLAVE_F());
-            this.reportError('Error: Después del contenido falta una llave de cierre "}"');
-        }
-
-
         return this.visitChildren(ctx);
     }
 
     // Visita un árbol de análisis producido por CompiladorParser#contenido
     visitContenido(ctx) {
-        // Verificar si hay una llave de cierre después del contenido
-        // if (!ctx.LLAVE_F()) {
-        //     console.log(tx.LLAVE_F());
-        //     this.reportError('Error: Después del contenido falta una llave de cierre "}"');
-        // }
-        
         return this.visitChildren(ctx);
     }
 
     // Método para manejar la declaración de variables
-    visitDeclaracion(ctx) {
-        const variableName = ctx.ID().getText();
-        const variableType = ctx.pr().getText();
-        let defaultValue;
+    // Método para manejar la declaración de variables
+visitDeclaracion(ctx) {
+    const variableName = ctx.ID().getText();
+    const variableType = ctx.pr().getText();
+    let defaultValue;
 
-        // Validar el nombre de la variable
-        if (!/^[a-zA-Z_]+$/.test(variableName)) {
-            this.reportError(`El nombre de la variable '${variableName}' no debe contener números`);
-            return null; // No asignar ningún valor
-        }
+    // Validar el nombre de la variable
+    if (!/^[a-zA-Z_]+$/.test(variableName)) {
+        this.reportError(`El nombre de la variable '${variableName}' no debe contener números`);
+        return null; // No asignar ningún valor
+    }
 
-        // Verificar si el nombre de la variable ya está en uso  
-        if (this.memory.has(variableName)) {
-            this.reportError(`El nombre de la variable '${variableName}' ya está en uso`);
-            return null; // No asignar ningún valor
-        }
+    // Verificar si el nombre de la variable ya está en uso  
+    if (this.memory.has(variableName)) {
+        this.reportError(`El nombre de la variable '${variableName}' ya está en uso`);
+        return null; // No asignar ningún valor
+    }
 
-        // Verificar si se proporciona un valor para la variable
-        if (ctx.ASIGNACION()) {
-            // Si se proporciona una expresión, evalúala
-            defaultValue = this.visit(ctx.valor());
-        } else {
-            // Asignar un valor por defecto según el tipo de la variable
-            switch (variableType) {
-                case 'ent': // int
-                    defaultValue = 0;
-                    break;
-                case 'ltr': // char
-                    defaultValue = '';
-                    break;
-                case 'dec': // float
-                    defaultValue = 0.0;
-                    break;
-                default:
-                    this.reportError(`Tipo de variable no reconocido: ${variableType}`);
-                    return null;
+    // Verificar si se proporciona un valor para la variable
+    if (ctx.ASIGNACION()) {
+        // Si se proporciona una expresión, evalúala
+        const valor = this.visit(ctx.valor());
+        
+        // Verificar si el valor asignado es una letra
+        if (variableType === 'ltr') {
+            if (typeof valor !== 'string' || valor.length !== 1 || !/[a-zA-Z]/.test(valor)) {
+                console.log(valor.length);
+                console.log(valor);
+                this.reportError(`El valor asignado a la variable '${variableName}' no es una letra`);
+                return null;
             }
         }
 
-        // Verificar si falta un punto y coma (;) al final de la declaración de variable
-        const lastChild = ctx.getChild(ctx.getChildCount() - 1);
-        if (lastChild.getText() !== ';') {
-            console.log(`valor ${lastChild.getText()}`);
-            this.reportError('Error: Falta un punto y coma (;) al final de la declaración de variable');
-            return null;
+        defaultValue = valor;
+    } else {
+        // Asignar un valor por defecto según el tipo de la variable
+        switch (variableType) {
+            case 'ent': // int
+                defaultValue = 0;
+                break;
+            case 'ltr': // char
+                defaultValue = ' ';
+                break;
+            case 'dec': // float
+                defaultValue = 0.0;
+                break;
+            default:
+                this.reportError(`Tipo de variable no reconocido: ${variableType}`);
+                return null;
         }
-
-        // Asignar el valor por defecto a la variable (solo si no hay errores)
-        this.memory.set(variableName, defaultValue);
-
-        // Mostrar en la consola el nombre de la variable y su valor por defecto
-        console.log(`La variable ${variableName} tiene un valor de: ${defaultValue}`);
-        // Almacenar el resultado en el array de resultados
-        this.resultados.push(`La variable '${variableName}' ha sido declarada con valor por defecto: ${defaultValue}`);
-
-        return null; // No necesita retornar nada en este punto
     }
+
+    // Verificar si falta un punto y coma (;) al final de la declaración de variable
+    const lastChild = ctx.getChild(ctx.getChildCount() - 1);
+    if (lastChild.getText() !== ';') {
+        console.log(`valor ${lastChild.getText()}`);
+        this.reportError('Error: Falta un punto y coma (;) al final de la declaración de variable');
+        return null;
+    }
+
+    // Asignar el valor por defecto a la variable (solo si no hay errores)
+    this.memory.set(variableName, defaultValue);
+
+    // Mostrar en la consola el nombre de la variable y su valor por defecto
+    console.log(`La variable ${variableName} tiene un valor de: ${defaultValue}`);
+    // Almacenar el resultado en el array de resultados
+    this.resultados.push(`La variable '${variableName}' ha sido declarada con valor por defecto: ${defaultValue}`);
+
+    return null; // No necesita retornar nada en este punto
+}
+
 
     // Método para manejar la asignación de variables
     visitAsignacion(ctx) {
@@ -156,7 +147,6 @@ export default class CustomVisitor extends CompiladorVisitor {
         return this.impresionResultado;
     }
 
-    // Método para manejar la impresión de valores
     // Método para manejar la impresión de valores
     visitImprimir(ctx) {
         const value = this.visit(ctx.valor());

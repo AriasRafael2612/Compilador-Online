@@ -1,0 +1,56 @@
+2024-03-10 15:54:27:932 grammar LogManager.java:25 before: (COMBINED_GRAMMAR Compilador (RULES (RULE start (BLOCK (ALT INICIALIZACION LLAVE_I contenido LLAVE_F))) (RULE contenido (BLOCK (ALT (* (BLOCK (ALT declaracion) (ALT asignacion) (ALT imprimir)))))) (RULE declaracion (BLOCK (ALT pr ID (? (BLOCK (ALT ASIGNACION valor))) SEMI))) (RULE asignacion (BLOCK (ALT ID ASIGNACION valor SEMI))) (RULE imprimir (BLOCK (ALT PRINTF IPAREN (BLOCK (ALT valor) (ALT STRING)) DPARENT SEMI))) (RULE pr (BLOCK (ALT ENT) (ALT LTR) (ALT DEC))) (RULE valor (BLOCK (ALT valor (= op (BLOCK (ALT '*') (ALT '/'))) valor) (ALT valor (= op (BLOCK (ALT '+') (ALT '-'))) valor) (ALT INT) (ALT FLOAT) (ALT CHAR) (ALT ID) (ALT '(' valor ')'))) (RULE ENT (BLOCK (ALT 'ent'))) (RULE LTR (BLOCK (ALT 'ltr'))) (RULE DEC (BLOCK (ALT 'dec'))) (RULE PRINTF (BLOCK (ALT 'printf'))) (RULE MUL (BLOCK (ALT '*'))) (RULE DIV (BLOCK (ALT '/'))) (RULE ADD (BLOCK (ALT '+'))) (RULE SUB (BLOCK (ALT '-'))) (RULE INICIALIZACION (BLOCK (ALT 'inicializacion'))) (RULE ASIGNACION (BLOCK (ALT '='))) (RULE LLAVE_I (BLOCK (ALT '{'))) (RULE LLAVE_F (BLOCK (ALT '}'))) (RULE ID (BLOCK (ALT (+ (BLOCK (ALT [a-zA-Z])))))) (RULE INT (BLOCK (ALT (+ (BLOCK (ALT [0-9])))))) (RULE CHAR (BLOCK (ALT (+ (BLOCK (ALT [a-zA-Z])))))) (RULE FLOAT (BLOCK (ALT (+ (BLOCK (ALT [0-9]))) '.' (+ (BLOCK (ALT [0-9])))))) (RULE SEMI (BLOCK (ALT ';'))) (RULE IPAREN (BLOCK (ALT '('))) (RULE DPARENT (BLOCK (ALT ')'))) (RULE STRING (BLOCK (ALT '\'' (* (BLOCK (ALT (~ (SET '\''))) (ALT '\n'))) '\''))) (RULE WS (BLOCK (LEXER_ALT_ACTION (ALT (+ (BLOCK (ALT [ \t\r\n])))) skip)))))
+2024-03-10 15:54:27:963 grammar LogManager.java:25 after: (COMBINED_GRAMMAR Compilador (RULES (RULE start (BLOCK (ALT INICIALIZACION LLAVE_I contenido LLAVE_F))) (RULE contenido (BLOCK (ALT (* (BLOCK (ALT declaracion) (ALT asignacion) (ALT imprimir)))))) (RULE declaracion (BLOCK (ALT pr ID (? (BLOCK (ALT ASIGNACION valor))) SEMI))) (RULE asignacion (BLOCK (ALT ID ASIGNACION valor SEMI))) (RULE imprimir (BLOCK (ALT PRINTF IPAREN (BLOCK (ALT valor) (ALT STRING)) DPARENT SEMI))) (RULE pr (BLOCK (ALT ENT) (ALT LTR) (ALT DEC))) (RULE valor (BLOCK (ALT valor (= op (SET '*' '/')) valor) (ALT valor (= op (SET '+' '-')) valor) (ALT INT) (ALT FLOAT) (ALT CHAR) (ALT ID) (ALT '(' valor ')'))) (RULE ENT (BLOCK (ALT 'ent'))) (RULE LTR (BLOCK (ALT 'ltr'))) (RULE DEC (BLOCK (ALT 'dec'))) (RULE PRINTF (BLOCK (ALT 'printf'))) (RULE MUL (BLOCK (ALT '*'))) (RULE DIV (BLOCK (ALT '/'))) (RULE ADD (BLOCK (ALT '+'))) (RULE SUB (BLOCK (ALT '-'))) (RULE INICIALIZACION (BLOCK (ALT 'inicializacion'))) (RULE ASIGNACION (BLOCK (ALT '='))) (RULE LLAVE_I (BLOCK (ALT '{'))) (RULE LLAVE_F (BLOCK (ALT '}'))) (RULE ID (BLOCK (ALT (+ (BLOCK (ALT [a-zA-Z])))))) (RULE INT (BLOCK (ALT (+ (BLOCK (ALT [0-9])))))) (RULE CHAR (BLOCK (ALT (+ (BLOCK (ALT [a-zA-Z])))))) (RULE FLOAT (BLOCK (ALT (+ (BLOCK (ALT [0-9]))) '.' (+ (BLOCK (ALT [0-9])))))) (RULE SEMI (BLOCK (ALT ';'))) (RULE IPAREN (BLOCK (ALT '('))) (RULE DPARENT (BLOCK (ALT ')'))) (RULE STRING (BLOCK (ALT '\'' (* (BLOCK (ALT (~ (SET '\''))) (ALT '\n'))) '\''))) (RULE WS (BLOCK (LEXER_ALT_ACTION (ALT (+ (BLOCK (ALT [ \t\r\n])))) skip)))))
+2024-03-10 15:54:27:994 grammar LogManager.java:25 after extract implicit lexer =(COMBINED_GRAMMAR Compilador (RULES (RULE start (BLOCK (ALT INICIALIZACION LLAVE_I contenido LLAVE_F))) (RULE contenido (BLOCK (ALT (* (BLOCK (ALT declaracion) (ALT asignacion) (ALT imprimir)))))) (RULE declaracion (BLOCK (ALT pr ID (? (BLOCK (ALT ASIGNACION valor))) SEMI))) (RULE asignacion (BLOCK (ALT ID ASIGNACION valor SEMI))) (RULE imprimir (BLOCK (ALT PRINTF IPAREN (BLOCK (ALT valor) (ALT STRING)) DPARENT SEMI))) (RULE pr (BLOCK (ALT ENT) (ALT LTR) (ALT DEC))) (RULE valor (BLOCK (ALT valor (= op (SET '*' '/')) valor) (ALT valor (= op (SET '+' '-')) valor) (ALT INT) (ALT FLOAT) (ALT CHAR) (ALT ID) (ALT '(' valor ')')))))
+2024-03-10 15:54:27:994 grammar LogManager.java:25 lexer =(LEXER_GRAMMAR CompiladorLexer (RULES (RULE ENT (BLOCK (ALT 'ent'))) (RULE LTR (BLOCK (ALT 'ltr'))) (RULE DEC (BLOCK (ALT 'dec'))) (RULE PRINTF (BLOCK (ALT 'printf'))) (RULE MUL (BLOCK (ALT '*'))) (RULE DIV (BLOCK (ALT '/'))) (RULE ADD (BLOCK (ALT '+'))) (RULE SUB (BLOCK (ALT '-'))) (RULE INICIALIZACION (BLOCK (ALT 'inicializacion'))) (RULE ASIGNACION (BLOCK (ALT '='))) (RULE LLAVE_I (BLOCK (ALT '{'))) (RULE LLAVE_F (BLOCK (ALT '}'))) (RULE ID (BLOCK (ALT (+ (BLOCK (ALT [a-zA-Z])))))) (RULE INT (BLOCK (ALT (+ (BLOCK (ALT [0-9])))))) (RULE CHAR (BLOCK (ALT (+ (BLOCK (ALT [a-zA-Z])))))) (RULE FLOAT (BLOCK (ALT (+ (BLOCK (ALT [0-9]))) '.' (+ (BLOCK (ALT [0-9])))))) (RULE SEMI (BLOCK (ALT ';'))) (RULE IPAREN (BLOCK (ALT '('))) (RULE DPARENT (BLOCK (ALT ')'))) (RULE STRING (BLOCK (ALT '\'' (* (BLOCK (ALT (~ (SET '\''))) (ALT '\n'))) '\''))) (RULE WS (BLOCK (LEXER_ALT_ACTION (ALT (+ (BLOCK (ALT [ \t\r\n])))) skip)))))
+2024-03-10 15:54:28:484 left-recursion LogManager.java:25 valor
+    :   ( {} INT<tokenIndex=144>                                
+        | FLOAT<tokenIndex=151>                              
+        | CHAR<tokenIndex=158>                               
+        | ID<tokenIndex=165>                                 
+        | '('<tokenIndex=172> valor<tokenIndex=174> ')'<tokenIndex=176>                      
+        )
+        (
+          {this.precpred(this._ctx, 7)}?<p=7> op=('*'<tokenIndex=115>|'/'<tokenIndex=117>) valor<tokenIndex=120,p=8>
+                  | {this.precpred(this._ctx, 6)}?<p=6> op=('+'<tokenIndex=132>|'-'<tokenIndex=134>) valor<tokenIndex=137,p=7>
+        )*
+    ;
+2024-03-10 15:54:28:495 grammar LogManager.java:25 added: (RULE valor (BLOCK (ALT (BLOCK (ALT {} (INT (ELEMENT_OPTIONS (= tokenIndex 144)))) (ALT (FLOAT (ELEMENT_OPTIONS (= tokenIndex 151)))) (ALT (CHAR (ELEMENT_OPTIONS (= tokenIndex 158)))) (ALT (ID (ELEMENT_OPTIONS (= tokenIndex 165)))) (ALT ('(' (ELEMENT_OPTIONS (= tokenIndex 172))) (valor (ELEMENT_OPTIONS (= tokenIndex 174))) (')' (ELEMENT_OPTIONS (= tokenIndex 176))))) (* (BLOCK (ALT ({this.precpred(this._ctx, 7)}? (ELEMENT_OPTIONS (= p 7))) (= op (SET ('*' (ELEMENT_OPTIONS (= tokenIndex 115))) ('/' (ELEMENT_OPTIONS (= tokenIndex 117))))) (valor (ELEMENT_OPTIONS (= tokenIndex 120) (= p 8)))) (ALT ({this.precpred(this._ctx, 6)}? (ELEMENT_OPTIONS (= p 6))) (= op (SET ('+' (ELEMENT_OPTIONS (= tokenIndex 132))) ('-' (ELEMENT_OPTIONS (= tokenIndex 134))))) (valor (ELEMENT_OPTIONS (= tokenIndex 137) (= p 7)))))))))
+2024-03-10 15:54:28:495 semantics LogManager.java:25 tokens={EOF=-1, ENT=1, LTR=2, DEC=3, PRINTF=4, MUL=5, DIV=6, ADD=7, SUB=8, INICIALIZACION=9, ASIGNACION=10, LLAVE_I=11, LLAVE_F=12, ID=13, INT=14, CHAR=15, FLOAT=16, SEMI=17, IPAREN=18, DPARENT=19, STRING=20, WS=21}
+2024-03-10 15:54:28:495 semantics LogManager.java:25 strings={'ent'=1, 'ltr'=2, 'dec'=3, 'printf'=4, '*'=5, '/'=6, '+'=7, '-'=8, 'inicializacion'=9, '='=10, '{'=11, '}'=12, ';'=17, '('=18, ')'=19}
+2024-03-10 15:54:28:511 LL1 LogManager.java:25 
+DECISION 0 in rule contenido
+2024-03-10 15:54:28:511 LL1 LogManager.java:25 look=[{1..3}, 13, 4]
+2024-03-10 15:54:28:511 LL1 LogManager.java:25 LL(1)? true
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 
+DECISION 1 in rule contenido
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 look=[{1..4, 13}, 12]
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 LL(1)? true
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 
+DECISION 2 in rule declaracion
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 look=[10, 17]
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 LL(1)? true
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 
+DECISION 3 in rule imprimir
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 look=[{13..16, 18}, 20]
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 LL(1)? true
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 
+DECISION 4 in rule pr
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 look=[1, 2, 3]
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 LL(1)? true
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 
+DECISION 5 in rule valor
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 look=[14, 16, 15, 13, 18]
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 LL(1)? true
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 
+DECISION 6 in rule valor
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 look=[null, null]
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 LL(1)? false
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 
+DECISION 7 in rule valor
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 look=[null, null]
+2024-03-10 15:54:28:527 LL1 LogManager.java:25 LL(1)? false
+2024-03-10 15:54:28:574 action-translator LogManager.java:25 translate 
+2024-03-10 15:54:28:574 action-translator LogManager.java:25 translate this.precpred(this._ctx, 7)
+2024-03-10 15:54:28:574 action-translator LogManager.java:25 translate this.precpred(this._ctx, 6)
+2024-03-10 15:54:28:574 action-translator LogManager.java:25 translate this.precpred(this._ctx, 7)
+2024-03-10 15:54:28:574 action-translator LogManager.java:25 translate this.precpred(this._ctx, 6)

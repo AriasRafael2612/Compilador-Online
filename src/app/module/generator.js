@@ -24,36 +24,40 @@ export const analizar = (input) => {
   // Manejar errores del lexer
   lexer.addErrorListener({
     syntaxError: function(recognizer, offendingSymbol, line, column, msg, e) {
-      errores.push(`Error léxico en línea ${line}:${column} - ${msg}`);
+      errores.push(`${line}:${column} - ${msg}`);
     }
   });
 
   // Manejar errores del parser
   parser.addErrorListener({
     syntaxError: function(recognizer, offendingSymbol, line, column, msg, e) {
-      errores.push(`Error sintáctico en línea ${line}:${column} - ${msg}`);
+      errores.push(`${line}:${column} - ${msg}`);
     }
   });
 
   const tree = parser.start();
 
-  // Si hay errores, retornar inmediatamente
+  // Si hay errores del lexer o parser, retornar el primer error encontrado
   if (errores.length > 0) {
-    return { errores, resultados, impresiones }; // También se retorna impresiones vacías
+    return { errores: [errores[0]], resultados, impresiones }; // También se retorna impresiones vacías
   }
 
   const customVisitor = new CustomVisitor();
 
-  // Realiza la visita del árbol con el CustomVisitor
-  customVisitor.visit(tree);
+  try {
+    // Realiza la visita del árbol con el CustomVisitor
+    customVisitor.visit(tree);
 
-  // Obtiene los errores acumulados del CustomVisitor
-  const customVisitorErrores = customVisitor.getErrores();
+    // Obtiene los errores acumulados del CustomVisitor
+    const customVisitorErrores = customVisitor.getErrores();
 
-  // Si hay errores provenientes del CustomVisitor, retornar inmediatamente
-  if (customVisitorErrores.length > 0) {
-    errores.push(...customVisitorErrores);
-    return { errores, resultados, impresiones }; // También se retorna impresiones vacías
+    // Si hay errores provenientes del CustomVisitor, retornar el primero
+    if (customVisitorErrores.length > 0) {
+      return { errores: [customVisitorErrores[0]], resultados, impresiones }; // También se retorna impresiones vacías
+    }
+  } catch (error) {
+    // Si se produce una excepción durante la visita del árbol, capturarla y retornar el primer error
+    return { errores: [error.message], resultados, impresiones };
   }
 
   // Obtiene los resultados acumulados del CustomVisitor
