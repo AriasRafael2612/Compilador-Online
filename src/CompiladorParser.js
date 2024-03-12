@@ -36,7 +36,7 @@ const sharedContextCache = new antlr4.atn.PredictionContextCache();
 export default class CompiladorParser extends antlr4.Parser {
 
     static grammarFileName = "Compilador.g4";
-    static literalNames = [ null, "'ent'", "'ltr'", "'dec'", "'printf'", 
+    static literalNames = [ null, "'ent'", "'ltr'", "'dec'", "'resultado'", 
                             "'*'", "'/'", "'+'", "'-'", "'inicializacion'", 
                             "'='", "'{'", "'}'", null, null, null, null, 
                             "';'", "'('", "')'" ];

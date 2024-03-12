@@ -32,9 +32,9 @@ public class CompiladorParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'ent'", "'ltr'", "'dec'", "'printf'", "'*'", "'/'", "'+'", "'-'", 
-			"'inicializacion'", "'='", "'{'", "'}'", null, null, null, null, "';'", 
-			"'('", "')'"
+			null, "'ent'", "'ltr'", "'dec'", "'resultado'", "'*'", "'/'", "'+'", 
+			"'-'", "'inicializacion'", "'='", "'{'", "'}'", null, null, null, null, 
+			"';'", "'('", "')'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();

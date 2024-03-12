@@ -1,6 +1,5 @@
 'use client';
 
-
 import React, { useState, useEffect, useRef } from "react";
 import { analizar } from "./module/generator.js";
 import CodeMirror from '@uiw/react-codemirror';
@@ -23,6 +22,7 @@ const HomePage = () => {
   };
 
   const handleDelete = () => {
+   
     setCodigo("");
     setResultados("");
     setErrores("");
@@ -38,17 +38,15 @@ const HomePage = () => {
     <div style={{ backgroundColor: "#282c34", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "Courier, monospace", color: "#abb2bf" }}>
       <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%", padding: "20px" }}>
         <div style={{ flex: "1", marginLeft: "20px", position: "relative" }}>
-          <div style={{ width: "100%", backgroundColor: "#1e2227", borderRadius: "5px", border: "1px solid #61dafb", marginBottom: "20px", position: "relative" }}>
+          <div style={{ width: "100%", backgroundColor: "#1e2227", borderRadius: "5px", border: "1px solid #61dafb", marginBottom: "20px", position: "relative", overflow: "scroll" }}>
             <CodeMirror
               ref={textAreaRef}
               defaultValue={codigo}
               onChange={(value) => setCodigo(value)}
-              height={470}
-              width="100%"
               theme={dracula}
-              rows={8}
               language="javascript"
-              style={{ marginLeft: "2em" }}
+              style={{ height: "560px"}}
+              // , width: "570px", overflowX: "scroll"
             />
           </div>
         </div>

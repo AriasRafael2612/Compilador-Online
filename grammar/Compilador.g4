@@ -27,7 +27,7 @@ valor: valor op=('*'|'/') valor         #MulDiv
 ENT     : 'ent';
 LTR     : 'ltr';
 DEC     : 'dec';
-PRINTF  : 'printf';
+PRINTF  : 'resultado';
 
 MUL : '*' ; // assigns token name to '*' used above in grammar
 DIV : '/' ;
